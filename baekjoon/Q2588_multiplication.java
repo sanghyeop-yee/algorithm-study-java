@@ -18,8 +18,8 @@ public class Q2588_multiplication {
 		int c = a*b;
 		
 		for(int i=0; i<3; i++) {
-			bw.write(a*(b%10)+"\n");
-			b/=10;
+			bw.write(a*(b%10)+"\n"); // 1. 472*5 | 2. 472*8 | 3. 472*3
+			b/=10; // 1. b(385) 는 이제 385/10(38) | 2. b(38)은 이제 38/10(3) | 3. 3/10
 		}
 		bw.write(String.valueOf(c));
 		bw.flush();
