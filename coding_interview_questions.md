@@ -34,6 +34,12 @@ BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 String s = br.readLine();
 String array[] = s.split(" "); // 공백마다 데이터 끊어서 배열에 넣음
 String[] arr = s.split(" ");
+
+
+// 1. BufferedReader 에 문자 스트림인 InputStreamReader 와 바이트 스트림인 System.in 을 연결시키기
+// 2. readLine() 으로 한 라인을 입력받으면 String 형태로 입력받고, 구분자로 공백문자를 전달하기 위해 st 생성하기
+// 3. 
+
 ```
 
 
@@ -139,4 +145,89 @@ public static void main(String[] args){
 
 
 
+
+### 5. Array : 오름차순 정렬 vs 내림차순 정렬 
+
+
+
+```java
+// 오름차순
+int A[] = {5, 3, 2, 4, 1} // 다섯개의 데이터를 배열에 초기화
+Arrays.sort(A);
+System.out.println(Arrays.toString(A));
+```
+
+
+
+```java
+// 내림차순 정렬 방법 1
+Integer A[] = {5, 3, 2, 4, 1} // 2. 따라서 배열의 선언을 기본형인 int 가 아닌 객체 형태인 Integer 배열로 선언합니다.
+Arrays.sort(A, Collections.reverseOrder()); // 1. Collections.. 는 객체의 형태에만 적용이 가능합니다.
+System.out.println(Arrays.toString(A));
+
+
+// 내림차순 정렬 방법 2
+int A[] = {5,3,2,4,1};
+// Integer라는 래퍼 클래스를 만들어서 int 배열인 A 를 박싱해줍니다.
+Integer[] tmp = Arrays.stream(A).boxed().toArray(Integer[]::new); 
+Arrays.sort(tmp, Collections.reverseOrder());
+System.out.println(Arrays.toString(tmp));
+
+
+// 내림차순 정렬 방법 3
+// 난 오름차순처럼 그냥 쓰고 싶어~ -> 그럼 -1 곱해서 저장해서 오름차순 함수로 정렬해~
+int A[] = {-5, -3, -2, -4, -1}; // 실제로는 5,4,3,2,1 을 저장하고자 하는 의도지만 -1을 곱하여 저장
+Arrays.sort(A);
+System.out.println(Arrays.toString(A));
+```
+
+
+
+
+
+### 6. Comparable: 데이터 정렬할 때
+
+> sort (단일 기준) vs Comparable (정렬 기준이 여러 개)
+
+
+
+Q. 영어 점수가 높은 학생 순으로 정렬하되 영어 점수가 같으면 수학점사가 높은 학생을 선순위로 정렬하여 주세요.
+
+```java
+ // Step 1. 점수 클래스 생성하기
+Class Score{
+  // 멤버변수로 선언
+  int english;
+  int math;
+  
+  // 위 두 변수를 파라미터로 하는 생성자 선언
+  public Score(int english, int math){
+    super();
+    this.english = english;
+    this.math = math;
+  }
+  
+  // 나중에 확인하기 위해
+  @Override
+  public String toString(){
+    return "Score [english="+ english +", math="+ math +"]";
+  }
+}
+```
+
+
+
+```java
+ // Step 2. Implement Comparable
+Class Score implements Comparable<Score>
+{
+  int english;
+  int math;
+  ...
+  @Override
+  public int compareTo(Score o){
+    return 0;
+  }
+}
+```
 
