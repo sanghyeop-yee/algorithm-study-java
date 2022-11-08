@@ -32,8 +32,8 @@ int b = Integer.parseInt(st.nextToken());
 // Read 한 데이터 가공 방법 2
 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 String s = br.readLine();
-String array[] = s.split(" "); // 공백마다 데이터 끊어서 배열에 넣음
-String[] arr = s.split(" ");
+String array[] = s.split(" "); // String[] arr = s.split(" "); 공백마다 데이터 끊어서 배열에 넣음
+
 
 
 // 1. BufferedReader 에 문자 스트림인 InputStreamReader 와 바이트 스트림인 System.in 을 연결시키기
