@@ -32,17 +32,21 @@ public class Q2884_alarm {
 		bw.close();
 		
 		/* Solution 2.
+		 * 조건
+		 * 1) 입력한 분이 45분 이전일때
+		 * 2) 입력한 시가 0시 일때
+		 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int hh = Integer.parseInt(st.nextToken());
         int mi = Integer.parseInt(st.nextToken());
 
-        if (mi < 45) {
-            mi = 60 + mi - 45;
-            if (hh == 0) hh = 23;
-            else hh -= 1;
+        if (mi < 45) { // 45분 이전이면
+            mi = 60 + mi - 45; // 분을 구하고
+            if (hh == 0) hh = 23; // 만약 0시 45분이면 시간은 23으로
+            else hh -= 1; // 0시가 아니면 입력 시에서 1을 뺀다
         } else {
-            mi -= 45;
+            mi -= 45; // 45분 이후면 분을 구한다.
         }
 
         System.out.println(hh + " " + mi);

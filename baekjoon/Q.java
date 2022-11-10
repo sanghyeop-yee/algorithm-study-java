@@ -3,37 +3,32 @@ import java.util.*;
 
 public class Q {
 	public static void main(String args[]) throws IOException {
-		// 입력
-		// h, m 입력값 받기
+		// 설정한 알람 시각 입력받기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int hour = Integer.parseInt(st.nextToken());
-		int minute =  Integer.parseInt(st.nextToken());
+		int H = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
 		
 		// 계산
-		// 0시 24시로 업데이트
-		if(hour == 0 && hour <= 23) {
-			hour = 24;
+		// 주어진 시각을 분으로 바꾸고 45분 빼주기 (h*60 + m) - 45
+		int T = (H * 60 + M) - 45;
 		
-			// 45분 보다 같거나 크면
-		} else if(minute >= 45 && minute <= 59) { 
-			minute -= 45; // 45를 빼고
-			System.out.printf("%d %d", hour, minute);
-		} else if(minute < 45) { // 45보다 작으면
-			hour -= 1; // 1시간을 빼고
-			minute = (60-(45-minute)); // 분을 구합니다.
-			System.out.printf("%d %d", hour, minute);
-		} 
-		
-		
-		// 10 10 
-		// = if m (44) < 45? (60 - (45-m)) and h-1
-			
-		// = if m (45) => 45 ? (m-45)
-		// = if 1 30 => 0 45
-		// = if 0 30 => h=23
-		
+		// 만약 계산된 값 T가 0보다 크거나 같으면
+		if(T >= 0) {
+			// 시간 구하기
+			H = T / 60;
+			// 분 구하기 
+			M = T % 60;
+		} else if(T < 0) { // 만약 0보다 작으면
+			H = 23; // 시간은 23시로 리셋하고
+			M = 60 + T; // 분은 (60+ (t))
+		}
+
 		// 출력
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		bw.write(H + " " + M);
+		bw.flush();
+		bw.close();
 	}
 }
