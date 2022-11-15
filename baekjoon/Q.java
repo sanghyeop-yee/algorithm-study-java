@@ -3,27 +3,31 @@ import java.util.*;
 
 public class Q {
 	public static void main(String args[]) throws IOException {
-		// 첫째 줄에 현재 시각 입력받기
+		// 입력받기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		// 문자의 공백문자를 구분자로 받아서 입력받기
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		int H = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
+		// 변수 선언
+		int a = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
+		int c = Integer.parseInt(st.nextToken());
+		int prize = 0;
 		
-		// 입력 시각 분으로 환산하여 시간 빼기
-		int T = (H * 60 + M) - 45;
-		H = T / 60;
-		M = T % 60;
-		
-		if(M < 45) {
-			H += 1;
-			M -= 60;
+		// 계산
+		// 같은 눈 3개
+		if(a == b && a == c && b == c) {
+			prize = 10000 + a * 1000;
+		} else if(a == b) {
+			prize = 1000 + a * 100;
+		} else if(a == c) {
+			prize = 1000 + a * 100;
+		} else if(b == c) {
+			prize = 1000 + b * 100;
+		} else {
+			prize = Math.max(a, Math.max(b, c));
 		}
-		if(H >= 24) {
-			H -= 24;
-		}
-		System.out.println(H + " " + M);
 		
-		
+		System.out.println(prize);
 		
 	}
 }

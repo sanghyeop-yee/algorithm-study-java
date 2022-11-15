@@ -3,10 +3,13 @@ import java.util.*;
 
 public class Q2525_oven_alarm {
 	public static void main(String args[]) throws IOException {
+		// Solution 1
+		// 문자열을 한 줄로 읽는 BufferedReader
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		// 공백을 기준으로 문자열을 분리하는 StringTokenizer 클래스
+		StringTokenizer st = new StringTokenizer(br.readLine()); // br.readLine() 메소드는 한 행을 전부 읽기
 		// 요리 시작 시간 입력
-		int H = Integer.parseInt(st.nextToken());
+		int H = Integer.parseInt(st.nextToken()); // st.nextToken() 은 문자열을 반환하니 int형으로 형변환
 		int M = Integer.parseInt(st.nextToken());
 		// 요리 시간 입력
 		int C = Integer.parseInt(br.readLine());
@@ -26,6 +29,14 @@ public class Q2525_oven_alarm {
 		System.out.println(H + " " + M);
 		
 		/*
+		// Solution 2
+		int time = (H*60+M) + C; // 시->분으로 변환하고 요리시간 더하기
+		H = (time/60) % 24; // 시 (24시 이상이 될 경우 0시부터 시작)
+		M = (time%60); // 분
+		System.out.println(H + " " + M);
+		*/
+		
+		/* Solution 3
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		// 요리 시작 시간 입력
