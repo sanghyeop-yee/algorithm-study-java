@@ -2,28 +2,22 @@ import java.io.*;
 import java.util.*;
 
 public class Q {
-	public static void main(String args[]) throws IOException{
-		// 총 금액 x 입력받기
+	public static void main(String args[]) throws IOException {
+		// n 입력받기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int x = Integer.parseInt(br.readLine());
-		
-		// 구매한 물건의 종류의 수 n 입력받기
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int n = Integer.parseInt(br.readLine());
 		
-		StringTokenizer st;
-		int[] arr = new int[n];
-		int total = 0;
-		
-		for(int i=0; i<n; i++) {
-			// n번 동안 가격 a와 개수 b 입력받기
-			st = new StringTokenizer(br.readLine());
-			// (a*b) 을 배열에 입력해놓기
-			arr[i] = Integer.parseInt(st.nextToken()) * Integer.parseInt(st.nextToken());
-			// total 에 합 구하기
-			total += arr[i];
+		for(int i=1; i<=n; i++) { // n 번째 줄 동안 
+			// 각 n 번째 줄에서 n 의 갯수만큼 * 출력
+			for(int j=1; j<=i; j++) {
+				bw.write("*");
+			}
+			bw.newLine(); // 출력이 끝나면 줄 띄우기
 		}
+		bw.flush();
+		bw.close();
 
-		// 조건으로 Yes or No 출력
-		System.out.println(total==x ? "Yes" : "No");
 	}
+
 }
