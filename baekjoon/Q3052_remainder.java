@@ -21,7 +21,7 @@ public class Q3052_remainder {
 		System.out.println(count);
 		
 		/*
-		// Solution 2: HashMap 사용
+		// Solution 2: HashSet 사용
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		HashSet<Integer> h = new HashSet<Integer>();
 		
