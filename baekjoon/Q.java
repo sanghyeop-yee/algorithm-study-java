@@ -2,35 +2,34 @@ import java.io.*;
 import java.util.*;
 
 public class Q {
-	public static void main(String args[]) throws IOException {
+	public static void main(String[] args) throws IOException {
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
+		int c = Integer.parseInt(br.readLine());
 		
-		int n = Integer.parseInt(br.readLine());
+		StringTokenizer st;
+		int n = 0;
 		
-		String[] arr = new String[n];
-		
-		for(int i=0; i<arr.length; i++) {
-			arr[i] = br.readLine();
-		}
-		
-		for(int i=0; i<arr.length; i++) {
+		for(int i=0; i<c; i++) {
+			st = new StringTokenizer(br.readLine());
+			n = Integer.parseInt(st.nextToken());
 			
-			int cnt = 0;
 			int sum = 0;
 			
-			for(int j=0; j<arr[i].length(); j++) {
-				if(arr[i].charAt(j) == 'O') {
-					cnt += 1;
-				} else {
-					cnt = 0;
-				}
-				sum += cnt;
+			for(int j=0; j<n; j++) {
+				int arr[] = new int[n];
+				arr[j] = Integer.parseInt(st.nextToken());
+				sum += arr[j];
 			}
-			
-			sb.append(sum + '\n');
+			int average = (sum / n);
 		}
 		
-		System.out.println(sb);
+		for(int i=0; i<c;)
+		
+		// 평균 = 각 케이스별 학생의 총 점수 / 각 케이스별 학생의 수
+		// 평균을 넘는 학생들의 비율 = 평균을 넘는 학생 수 / 각 케이스별 학생 수 * 100
+		
+		
 	}
 }
+
