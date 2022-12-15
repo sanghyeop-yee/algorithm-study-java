@@ -3,33 +3,44 @@ import java.util.*;
 
 public class Q {
 	public static void main(String[] args) throws IOException {
-		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int c = Integer.parseInt(br.readLine());
+		int[] arr;
 		
+		int testcase = Integer.parseInt(br.readLine());
 		StringTokenizer st;
-		int n = 0;
 		
-		for(int i=0; i<c; i++) {
-			st = new StringTokenizer(br.readLine());
-			n = Integer.parseInt(st.nextToken());
+		for(int i = 0 ; i < testcase ; i++) {
+ 
+			st = new StringTokenizer(br.readLine()," "); // 학생 수 및 성적 입력
 			
-			int sum = 0;
 			
-			for(int j=0; j<n; j++) {
-				int arr[] = new int[n];
-				arr[j] = Integer.parseInt(st.nextToken());
-				sum += arr[j];
+			int N = Integer.parseInt(st.nextToken());	//학생 수 
+			arr = new int[N];
+			
+			double sum = 0;	// 성적 누적 합 변수 
+			
+			// 성적 입력부분 
+			for(int j = 0 ; j < N ; j++) {
+				int val = Integer.parseInt(st.nextToken());	// 성적 저장
+				arr[j] = val;
+				sum += val;	// 성적 누적 합 
 			}
-			int average = (sum / n);
+			
+			double mean = (sum / N) ;
+			double count = 0; // 평균 넘는 학생 수 변수 
+			
+			// 평균 넘는 학생 비율 찾기 
+			for(int j = 0 ; j < N ; j++) {
+				if(arr[j] > mean) {
+					count++;
+				}
+			}
+			
+			System.out.printf("%.3f%%\n",(count/N)*100);
+			
 		}
 		
-		for(int i=0; i<c;)
-		
-		// 평균 = 각 케이스별 학생의 총 점수 / 각 케이스별 학생의 수
-		// 평균을 넘는 학생들의 비율 = 평균을 넘는 학생 수 / 각 케이스별 학생 수 * 100
-		
-		
 	}
+
 }
 
