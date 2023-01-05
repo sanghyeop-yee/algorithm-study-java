@@ -3,44 +3,36 @@ import java.io.*;
 
 public class Q {
 	public static void main(String[] args) throws IOException {
+		
+		// 시험 과목의 개수 n 입력받기
+		// n 개의 점수 입력받으면서 배열에 저장
+		// m = 최대값 찾기
+		// 배열을 훑으면서 새로운 점수 계산
+		// 출력하면서 평균 계산
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
 		
-		int[] arr;
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		double[] arr = new double[n];
 		
-		int testcase = Integer.parseInt(br.readLine());
-		StringTokenizer st;
-		
-		for(int i = 0 ; i < testcase ; i++) {
- 
-			st = new StringTokenizer(br.readLine()," "); // 학생 수 및 성적 입력
-			
-			
-			int N = Integer.parseInt(st.nextToken());	//학생 수 
-			arr = new int[N];
-			
-			double sum = 0;	// 성적 누적 합 변수 
-			
-			// 성적 입력부분 
-			for(int j = 0 ; j < N ; j++) {
-				int val = Integer.parseInt(st.nextToken());	// 성적 저장
-				arr[j] = val;
-				sum += val;	// 성적 누적 합 
-			}
-			
-			double mean = (sum / N) ;
-			double count = 0; // 평균 넘는 학생 수 변수 
-			
-			// 평균 넘는 학생 비율 찾기 
-			for(int j = 0 ; j < N ; j++) {
-				if(arr[j] > mean) {
-					count++;
-				}
-			}
-			
-			System.out.printf("%.3f%%\n",(count/N)*100);
-			
-	
+		for(int i=0; i<n; i++) {
+			arr[i] = Double.parseDouble(st.nextToken());
 		}
+		
+		Arrays.sort(arr);
+		double m = arr[n-1];
+		
+		double sum = 0;
+		
+		for(int i=0; i<n; i++) {
+			arr[i] = arr[i]/m*100;
+			sum += arr[i];
+		}
+		
+		System.out.println(sum/n);
+		
+		
 	}
 	
 }

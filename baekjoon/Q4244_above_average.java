@@ -1,46 +1,52 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Q4244_above_average {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int testcase = Integer.parseInt(br.readLine());
 		
-		int[] arr;
+		// 테스트 케이스 개수 c 입력받기
+		// c 만큼 학생의 수 n, n명의 점수 입력받기
+		// 입력받은 첫번째 수가 n
+		// 나머지 수는 배열에 저장하기
+		// 합산된 합을 동시에 구하기
+		// 평균 구하기
+		// 배열을 훑으면서 평균보다 높은 값 세기
+		// 계산한 값을 sb 에 저장
+		// 출력
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		int c = Integer.parseInt(br.readLine());
+		
 		StringTokenizer st;
 		
-		// 1. 테스트 케이스만큼 반복문을 돌리면서
-		// 2. 배열에 성적을 저장함과 동시에 누적 합을 같이 구해준다.
-		// 3. 평균 성적을 구하여 배열에 저장된 성적들과 비교한 뒤 몇명의 학생이 평균보다 높은지 세기
-		// 4. printf 로 출력하기
-		for(int i=0; i<testcase; i++) {
-			
+		
+		for(int i=0; i<c; i++) {
 			st = new StringTokenizer(br.readLine());
-			int N = Integer.parseInt(st.nextToken()); // 학생수
-			arr = new int[N];
+			int n = Integer.parseInt(st.nextToken());
 			
-			double sum = 0; // 성적 누적 합 변수
+			int[] arr = new int[n];
+			int sum = 0;
 			
-			// 성적 입력
-			for(int j=0; j<N; j++) {
-				int score = Integer.parseInt(st.nextToken()); // 성적 저장
-				arr[j] = score;
-				sum += score;
+			for(int j=0; j<n; j++) {
+				arr[j] = Integer.parseInt(st.nextToken());
+				sum += arr[j];
 			}
 			
-			double mean = (sum / N);
-			double count = 0; // 평균 넘는 학생 수 변수
+			double mean = sum/n;
+			double cnt = 0;
 			
-			// 평균 넘는 학생 비율 찾기
-			for(int j=0; j<N; j++) {
+			for(int j=0; j<n; j++) {
 				if(arr[j] > mean) {
-					count++;
+					cnt++;
 				}
 			}
 			
-			System.out.printf("%.3f%%\n", (count/N) * 100);
+			String ans = String.format("%.3f", cnt/n*100);
+			sb.append(ans).append('%').append('\n');
+			
 		}
-	
+		System.out.println(sb);
 	}
-
+	
 }
