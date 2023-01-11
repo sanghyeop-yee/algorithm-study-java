@@ -1,38 +1,41 @@
-import java.util.*;
-import java.io.*;
 
 public class Q {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args){
 		
-		// 시험 과목의 개수 n 입력받기
-		// n 개의 점수 입력받으면서 배열에 저장
-		// m = 최대값 찾기
-		// 배열을 훑으면서 새로운 점수 계산
-		// 출력하면서 평균 계산
+		// 셀프넘버 출력하기
+		// 1-10000 인덱스에서 생성자인 경우에 표시하기
+		boolean[] check = new boolean[10001];
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
+		for(int i=1; i<10001; i++) {
+			int n = d(i);
+			
+			if(n < 10001) {
+				check[n] = true;
+			}
+			
+		}
+
+		// 1-10000 까지 훑으면서 해당이 안되는 셀프넘버 출력하기 
+		StringBuilder sb = new StringBuilder();
 		
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		double[] arr = new double[n];
+		for(int i=1; i<10001; i++) {
+			if(!check[i]) {
+				sb.append(i).append('\n');
+			}
+		}
+		System.out.println(sb);
 		
-		for(int i=0; i<n; i++) {
-			arr[i] = Double.parseDouble(st.nextToken());
+	}
+	
+	public static int d(int number) {
+		int sum = number;
+		
+		while(number != 0) {
+			sum = sum + (number % 10);
+			number = number/10;
 		}
 		
-		Arrays.sort(arr);
-		double m = arr[n-1];
-		
-		double sum = 0;
-		
-		for(int i=0; i<n; i++) {
-			arr[i] = arr[i]/m*100;
-			sum += arr[i];
-		}
-		
-		System.out.println(sum/n);
-		
-		
+		return sum;
 	}
 	
 }
