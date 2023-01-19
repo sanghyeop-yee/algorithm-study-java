@@ -1,41 +1,46 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+// 1부터 10000까지 배열을 만들고
+// n=1부터 시작하여 d(n) 의 함수에 대입하여 나온수를 배열의 인덱스에 true 로 표시하고
+// 배열을 스캔하면서 false 로 되어 있는 셀프 넘버를 한줄에 하나씩 출력하기
+
+// d(n) 함수
+// int number 를 받는 함수 d(n) 은 
+// sum = sum + (num % 10)
+// num / 10
 
 public class Q {
 	
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static void main(String[] args) {
+		boolean[] check = new boolean[10001];
 		
-		System.out.print(arithmetic_sequence(Integer.parseInt(br.readLine())));
-	}
-	
-	// 1. arithmetic_sequence 함수와 해당 함수 안에 한수의 개수를 셀 cnt 변수 선언
-	public static int arithmetic_sequence(int num) {
-		int cnt = 0; // 한수 카운팅
-		
-		// 2. 1~99 인 경우 (모두 수열) 와 100 이상인 경우로 나누기
-		if(num < 100) {
-			return num;
-		} else {
-			// 3. 100 이상의 수들의 각 자릿수가 등차수열인지 짜보기
-			// 100 이상의 수가 들어오면 한수의 최소 개수는 99개 임으로 cnt=99 로 초기화
-			cnt = 99;
+		for(int i=1; i<10001; i++) {
+			int n = d(i);
 			
-			// 4. 100부터 입력받은 값(num) 까지 반복하면서 한수의 개수 세기
-			// 이때, 각 자릿수를 변수로 두기
-			for(int i=100; i<=num; i++) {
-				int hun = i / 100;
-				int ten = (i / 10) % 10;
-				int one = i % 10;
-				
-				if((hun-ten) == (ten-one)) { // 각 자릿수가 수열을 이루면
-					cnt++;
-					
-				}
+			if(n < 10001) {
+				check[n] = true;
 			}
 		}
 		
-		return cnt;
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i=1; i<10001; i++) {
+			
+			if(!check[i]) {
+				sb.append(i).append('\n');
+			}
+		}
+		
+		System.out.println(sb);
+		
+	}
+	
+	public static int d(int number) {
+		int sum = number;
+		
+		while(number != 0) {
+			sum = sum + (number % 10); // 첫번째 자리
+			number = number / 10;
+		}
+		
+		return sum;
 	}
 }
